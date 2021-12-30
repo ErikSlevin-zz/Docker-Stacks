@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+
+  youtube-dl:
+
+    image: alexta69/metube:latest
+
+    container_name: youtube-dl
+    hostname: youtube-dl
+   
+    ports:
+      - 9060:8081
+    
+    volumes:
+      - youtube-dl:/downloads
+      
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      
+    restart: unless-stopped
+    
+volumes:
+  youtube-dl:
+    external:
+      name: youtube-dl

@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+
+  homer:
+
+    image: b4bz/homer:latest
+
+    container_name: homer
+    hostname: homer
+    
+    ports:
+      - 9070:8080
+      
+    volumes:
+      - homer:/www/assets
+      
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    restart: unless-stopped
+
+volumes:
+  homer:
+    external:
+      name: homer

@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  pihole:
+
+    image: pihole/pihole:latest
+
+    container_name: pihole
+    hostname: pihole
+
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 9050:80/tcp
+      
+    environment:
+      - TZ=Europe/Berlin
+      - WEBPASSWORD=$PASSWORD
+      - FTLCONF_REPLY_ADDR4=10.0.0.10
+      - ADMIN_EMAIL=xxxxxxx@outlook.de
+      - PIHOLE_DNS_=1.1.1.1;1.0.0.1
+      - WEBTHEME=default-dark
+      
+    volumes:
+      - pihole-etc:/etc/pihole/
+      - pihole-dnsmasq.d:/etc/dnsmasq.d/
+      
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    restart: unless-stopped
+
+volumes:
+  pihole-etc:
+    external:
+      name: pihole-etc
+
+  pihole-dnsmasq.d:
+    external:
+      name: pihole-dnsmasq.d

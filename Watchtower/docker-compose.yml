@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+
+  watchtower:
+
+    image: containrrr/watchtower:latest
+
+    container_name: watchtower
+    hostname: watchtower
+    
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/timezone:/etc/timezone:ro
+      
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_POLL_INTERVAL=21600
+      - WATCHTOWER_NOTIFICATIONS=gotify
+      - WATCHTOWER_NOTIFICATION_GOTIFY_URL=http://XXXXXXXX
+      - WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN=XXXXXXXX
+      - WATCHTOWER_NOTIFICATION_GOTIFY_TLS_SKIP_VERIFY=true
+    
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      
+    restart: unless-stopped

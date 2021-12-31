@@ -22,5 +22,5 @@ services:
     
 volumes:
   youtube-dl:
-    external:
-      name: youtube-dl
+    external: true
+    name: youtube-dl

@@ -64,13 +64,13 @@ volumes:
 
   # 1
   npm:
-    external:
-      name: npm
+    external: true
+    name: npm
   # 2    
   letsencrypt:
-    external:
-      name: letsencrypt
+    external: true
+    name: letsencrypt
   # 3    
   maria-db:
-    external:
-      name: maria-db
+    external: true
+    name: maria-db

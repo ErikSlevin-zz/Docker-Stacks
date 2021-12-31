@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+
+  bitwarden:
+
+    image: vaultwarden/server:latest
+
+    container_name: valtwarden
+    hostname: valtwarden
+    
+    ports:
+      - 9020:80 
+            
+    volumes:
+      - valtwarden:/data
+
+    environment:
+      - ADMIN_TOKEN=$PASSWORD
+      - ORG_CREATION_USERS=none
+      - DOMAIN=https://bitwarden.xxxxxxxxxxx.de
+      - INVITATIONS_ALLOWED=false
+      - SIGNUPS_ALLOWED=false
+      
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+     
+    restart: always
+
+volumes:
+  valtwarden:
+    external: true
+    name: valtwarden

@@ -37,5 +37,5 @@ volumes:
       name: pihole-etc
 
   pihole-dnsmasq.d:
-    external:
-      name: pihole-dnsmasq.d
+    external: true
+    name: pihole-dnsmasq.d

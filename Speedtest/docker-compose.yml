@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+    speedtest:
+
+        container_name: speedtest
+        hostname: speedtest
+
+        image: henrywhitaker3/speedtest-tracker:dev
+
+        ports:
+            - 9010:80
+
+        volumes:
+            - speedtest:/config
+
+        environment:
+            - TZ=Europe/Berlin
+            - OOKLA_EULA_GDPR=true
+
+        logging:
+            driver: "json-file"
+            options:
+                max-file: "10"
+                max-size: "200k"
+                
+        labels:
+          - "com.centurylinklabs.watchtower.enable=true"
+
+        restart: unless-stopped
+
+volumes:
+
+  speedtest:
+    external: true
+    name: speedtest

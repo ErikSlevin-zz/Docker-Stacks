@@ -22,5 +22,5 @@ services:
 
 volumes:
   homer:
-    external:
-      name: homer
+    external: true
+    name: homer
